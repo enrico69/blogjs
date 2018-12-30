@@ -1,0 +1,43 @@
+Article posté le <%= templateData.moment(templateData.article.DATE).locale('FR').format('Do MMMM YYYY'); %>
+    dans la catégorie '<a href="<%= templateData.baseUrl %><%= templateData.article.CATEGURL %>/"><%= templateData.article.CATEGNAME %></a>'
+
+<%if (templateData.article.Obsolete) { %>
+<p><strong style="color:red;">Attention, le contenu cet article est peut-être obsolète!</strong></p>
+<% } %>
+<%- templateData.article.CONTENT %>
+<br/>
+<div id="recentTopArticles">
+    <%if (templateData.articlesHome) { %>
+        <h3>Cet article vous a plu? Découvrez d'autres articles</h3>
+        <ul>
+            <% templateData.articlesHome.forEach(function(topArticle) { %>
+                <li><a href="<%= templateData.baseUrl %><%= topArticle.CATEGURL %>/<%= topArticle.URL %>/"><%= topArticle.TITLE %></a></li>
+            <% }); %>
+        </ul>
+    <% } %>
+</div>
+<br/>
+
+<%if (templateData.disqusId) { %>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);
+    }
+    }(document, 'script', 'twitter-wjs');</script>
+    <div class="contenu">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = '<%= templateData.disqusId %>'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+<% } %>

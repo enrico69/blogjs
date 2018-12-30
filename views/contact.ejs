@@ -1,0 +1,55 @@
+<h2>Formulaire de contact</h2>
+
+<form id="contactForm" action="<%= templateData.baseUrl %>contact/">
+    <label for="name">Nom</label><br/>
+    <input type="text" id="name" name="name"><br/>
+    <label for="email">Email</label><br/>
+    <input type="email" id="email" name="email"><br/>
+    <label for="message">Message</label><br/>
+    <textarea id="message" name="message"></textarea><br/>
+    <label for="verif"><%- templateData.antiSpamQuestion %></label><br/>
+    <input type="text" id="verif" name="verif"><br/>
+    <input type="submit" value="Envoyer"/>
+</form>
+
+<script type="text/javascript">
+    $('#contactForm').submit(function (e) {
+        e.preventDefault();
+        var status = true;
+        var fields = {
+            'name': 'Nom',
+            'email': 'Email',
+            'message': 'Message'
+        };
+
+        $.each(fields, function (key, value) {
+            if ($.trim($('#' + key).val()).length === 0) {
+                alert("Le champ '" + value + "' doit être renseigné.");
+                status = false;
+            }
+        });
+
+        if ($('#verif').val() !== '<%- templateData.antiSpamResponse %>') {
+            alert('Antispam invalide.');
+
+            status = false;
+        }
+
+        if (status) {
+            $.ajax({
+                type: "POST",
+                data: $(this).serialize(),
+                url: $(this).attr('action'),
+                success: function () {
+                    alert('Merci. Votre message a été envoyé');
+                    location.reload();
+                },
+                error: function () {
+                    alert("Une erreur s'est produite");
+                }
+            });
+        }
+
+        return false;
+    });
+</script>

@@ -1,0 +1,12 @@
+<%if (templateData.categories) { %>
+<ul>
+    <% templateData.categories.forEach(function(category) { %>
+    <li>
+        <a href="<%= templateData.baseUrl %><%= category.URL %>/"><%= category.NAME %></a>
+        <br/><i><%= category.DESCRIPTION %></i>
+    </li>
+    <% }); %>
+</ul>
+<% } else { %>
+Il n'y a pas de catégories actuellement.
+<% } %>

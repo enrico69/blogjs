@@ -1,0 +1,31 @@
+{
+  "name": "books-nodejs",
+  "version": "1.0.0",
+  "description": "A little app based on express.js to handle a blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enrico69/blogjs.git"
+  },
+  "author": "Eric COURTIAL",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/enrico69/blogjs/issues"
+  },
+  "homepage": "https://github.com/enrico69/blogjs#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "eventemitter": "^0.3.3",
+    "express": "^4.16.4",
+    "js-yaml": "^3.12.1",
+    "moment": "^2.23.0",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
+    "nodemailer": "^5.1.1",
+    "serve-favicon": "^2.5.0"
+  }
+}

@@ -1,0 +1,22 @@
+<%if (templateData.articles) { %>
+    <% templateData.articles.forEach(function(article) { %>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-preview">
+                    <a href="<%= templateData.baseUrl %><%= article.CATEGURL %>/<%= article.URL %>/">
+                    <h2 class="post-title">
+                        <%= article.TITLE %>
+                    </h2>
+                    <h3 class="post-subtitle">
+                        <%= article.DESCRIPTION %>
+                    </h3>
+                    </a>
+                    <p class="post-meta">Publié le <%= templateData.moment(article.DATE).locale('FR').format('Do MMMM YYYY'); %></p>
+                </div>
+                <hr>
+            </div>
+        </div>
+    <% }); %>
+<% } else { %>
+    Il n'y a pas d'articles actuellement.
+<% } %>

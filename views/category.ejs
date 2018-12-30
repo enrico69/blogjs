@@ -1,0 +1,12 @@
+<%if (templateData.articles) { %>
+<ul>
+<% templateData.articles.forEach(function(article) { %>
+    <li>
+        <a href="<%= templateData.baseUrl %><%= templateData.category.URL %>/<%= article.URL %>/"><%= article.TITLE %></a>
+        <br/><i><%= article.DESCRIPTION %></i>
+    </li>
+<% }); %>
+</ul>
+<% } else { %>
+    Il n'y a pas d'articles actuellement.
+<% } %>

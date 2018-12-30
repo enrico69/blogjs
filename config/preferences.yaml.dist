@@ -1,0 +1,23 @@
+db:
+    host: ''
+    user: ''
+    password: ''
+    database: ''
+    charset: ''
+
+general:
+    # HTTPS or not
+    isSecure: false
+    # User account to send email
+    userSenderEmail: ''
+    userSenderEmailPassword: ''
+    # User which will receive email from contact page
+    userReceiverEmail: ''
+    blogName: ''
+    blogDescription: ''
+    blogSlogan: ''
+    disqusId: false # Set to false if not applicable
+    githubAccountUrl: false # Set to false if not applicable
+    linkedinProfileUrl: false # Set to false if not applicable
+    antispamQuestion: ''
+    antispamResponse: ''
