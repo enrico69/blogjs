@@ -9,12 +9,14 @@
     <textarea id="message" name="message"></textarea><br/>
     <label for="verif"><%- templateData.antiSpamQuestion %></label><br/>
     <input type="text" id="verif" name="verif"><br/>
-    <input type="submit" value="Envoyer"/>
+    <input id="submitButton" type="submit" value="Envoyer"/>
 </form>
 
 <script type="text/javascript">
     $('#contactForm').submit(function (e) {
         e.preventDefault();
+        $('#submitButton').hide();
+
         var status = true;
         var fields = {
             'name': 'Nom',
@@ -46,6 +48,7 @@
                 },
                 error: function () {
                     alert("Une erreur s'est produite");
+                    $('#submitButton').show();
                 }
             });
         }

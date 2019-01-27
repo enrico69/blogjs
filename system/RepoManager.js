@@ -51,5 +51,10 @@ class RepoManager {
  * require('./config/RepoManager').RepoManager;
  */
 exports.RepoManager = function (configuration) {
-    return new RepoManager(configuration);
+    // We want a singleton
+    if (typeof this.instance === 'undefined') {
+        this.instance = new RepoManager(configuration);
+    }
+
+    return this.instance;
 };

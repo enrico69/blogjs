@@ -52,5 +52,10 @@ class DbManager {
  * require('./config/DbManager').DbManager;
  */
 exports.DbManager = function (configuration) {
-    return new DbManager(configuration);
+    // We want a singleton
+    if (typeof this.instance === 'undefined') {
+        this.instance = new DbManager(configuration);
+    }
+
+    return this.instance;
 };

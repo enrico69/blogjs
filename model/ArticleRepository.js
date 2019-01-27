@@ -22,12 +22,12 @@ class ArticleRepository extends EventEmitter {
      * Extract the articles for the homepage
      */
     getArticlesHome() {
-        var sqlQuery = 'SELECT articles.TITLE, articles.DESCRIPTION, articles.DATE, ' +
+        let sqlQuery = 'SELECT articles.TITLE, articles.DESCRIPTION, articles.DATE, ' +
             'articles.CATEG, articles.URL, categories.URL AS CATEGURL FROM ' +
             'articles, categories WHERE articles.CATEG = categories.ID AND HOME = 1 ' +
             'AND Online = 1 ORDER BY DATE DESC LIMIT 10';
 
-        var that = this;
+        let that = this;
 
         this.connection.query(sqlQuery, [], function (err, rows, fields) {
             that.handleReadResult(err, rows, fields);
@@ -38,11 +38,11 @@ class ArticleRepository extends EventEmitter {
      * Extract an article for a given slug
      */
     getArticleBySlug(articleSlug) {
-        var sqlQuery = 'SELECT articles.*, categories.URL AS CATEGURL, categories.NAME as CATEGNAME FROM ' +
+        let sqlQuery = 'SELECT articles.*, categories.URL AS CATEGURL, categories.NAME as CATEGNAME FROM ' +
             'articles, categories WHERE articles.URL = ? AND articles.CATEG = categories.ID' +
             ' AND Online = 1 LIMIT 1';
 
-        var that = this;
+        let that = this;
 
         this.connection.query(sqlQuery, [articleSlug], function (err, rows, fields) {
             if (rows && rows.length === 1) {
@@ -72,10 +72,10 @@ class ArticleRepository extends EventEmitter {
      * @param categId
      */
     getArticleByCateg(categId) {
-        var that = this;
+        let that = this;
 
         return new Promise(function(resolve, reject) {
-            var query = "SELECT * FROM articles WHERE CATEG = ? AND Online = 1";
+            let query = "SELECT * FROM articles WHERE CATEG = ? AND Online = 1";
 
             that.connection.query(query, [categId], function (err, rows, fields) {
                 if (rows) {
@@ -97,11 +97,11 @@ class ArticleRepository extends EventEmitter {
      * @return {Promise}
      */
     search(queryString) {
-        var that = this;
+        let that = this;
         queryString = '%' + queryString + '%';
 
         return new Promise(function(resolve, reject) {
-            var sqlQuery = 'SELECT articles.TITLE, articles.DESCRIPTION, articles.DATE, ' +
+            let sqlQuery = 'SELECT articles.TITLE, articles.DESCRIPTION, articles.DATE, ' +
                 'articles.CATEG, articles.URL, categories.URL AS CATEGURL FROM ' +
                 "articles, categories WHERE (articles.TITLE LIKE ? OR articles.CONTENT LIKE ?) " +
                 'AND articles.CATEG = categories.ID ' +

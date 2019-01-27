@@ -70,5 +70,10 @@ class ConfigManager {
  * require('./config/ConfigManager').ConfigManager;
  */
 exports.ConfigManager = function () {
-    return new ConfigManager();
+    // We want a singleton to avoid to read the config many times...
+    if (typeof this.instance === 'undefined') {
+        this.instance = new ConfigManager();
+    }
+
+    return this.instance;
 };
