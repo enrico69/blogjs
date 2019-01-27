@@ -21,3 +21,4 @@ general:
     linkedinProfileUrl: false # Set to false if not applicable
     antispamQuestion: ''
     antispamResponse: ''
+    locale: '' # en_US by default. If you change it, you need to at least create the translation file in the i18n folder.

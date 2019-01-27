@@ -1,6 +1,7 @@
 const configManager = require('../system/ConfigManager').ConfigManager();
-const renderer = require('../system/Renderer').Renderer(configManager);
 const repoManager = require('../system/RepoManager').RepoManager(configManager);
+const translator = require('../system/Translator').Translator(configManager);
+const renderer = require('../system/Renderer').Renderer(configManager, translator);
 
 /**
  * Render search results
@@ -11,8 +12,8 @@ exports.index = async function(req, res) {
     let articleRepository = repoManager.getRepo('Article');
     let articles = await articleRepository.search(req.body.chaine);
     renderer.renderBasic(req, res, 'search', {
-        pageTitle: 'Résultats de la recherche',
-        pageMeta: 'Résultats de la recherche',
+        pageTitle: translator.translate('Search results'),
+        pageMeta: translator.translate('Search results'),
         articles: articles,
         noIndex: true
     });

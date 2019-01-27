@@ -1,5 +1,6 @@
 const configManager = require('../system/ConfigManager').ConfigManager();
-const renderer = require('../system/Renderer').Renderer(configManager);
+const translator = require('../system/Translator').Translator(configManager);
+const renderer = require('../system/Renderer').Renderer(configManager, translator);
 const repoManager = require('../system/RepoManager').RepoManager(configManager);
 
 /**

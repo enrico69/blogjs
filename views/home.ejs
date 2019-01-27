@@ -11,12 +11,12 @@
                         <%= article.DESCRIPTION %>
                     </h3>
                     </a>
-                    <p class="post-meta">Publié le <%= templateData.moment(article.DATE).locale('FR').format('Do MMMM YYYY'); %></p>
+                    <p class="post-meta"><%= templateData.translator.translate('Posted on') %> <%= templateData.moment(article.DATE).locale(templateData.translator.getLocale()).format('Do MMMM YYYY'); %></p>
                 </div>
                 <hr>
             </div>
         </div>
     <% }); %>
 <% } else { %>
-    Il n'y a pas d'articles actuellement.
+    <%= templateData.translator.translate('There is no article currently.') %>
 <% } %>

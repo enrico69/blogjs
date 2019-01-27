@@ -1,4 +1,4 @@
-<%if (templateData.articles) { %>
+<%if (templateData.articles.length) { %>
 <ul>
 <% templateData.articles.forEach(function(article) { %>
     <li>
@@ -8,5 +8,5 @@
 <% }); %>
 </ul>
 <% } else { %>
-Il n'y a pas d'articles actuellement.
+    <%= templateData.translator.translate('There is no result matching your criteria.') %>
 <% } %>

@@ -7,10 +7,13 @@ class Renderer {
 
     /**
      * Constructor
+     *
      * @param configManager
+     * @param translator
      */
-    constructor(configManager) {
+    constructor(configManager, translator) {
         this.configManager = configManager;
+        this.translator = translator;
     };
 
     /**
@@ -41,6 +44,9 @@ class Renderer {
 
         // General data
         templateData['baseUrl'] = this.configManager.getBaseUrl(req);
+
+        // Add the translator component
+        templateData['translator'] = this.translator;
 
         /**
          * Rendering... with a callback, again. Told you callback could lead to hell?
@@ -95,10 +101,10 @@ class Renderer {
  * and where you call it:
  * require('./config/Renderer').Renderer;
  */
-exports.Renderer = function (configuration) {
+exports.Renderer = function (configuration, translator) {
     // We want a singleton
     if (typeof this.instance === 'undefined') {
-        this.instance = new Renderer(configuration);
+        this.instance = new Renderer(configuration, translator);
     }
 
     return this.instance;

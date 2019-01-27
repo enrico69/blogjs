@@ -1,5 +1,6 @@
 const configManager = require('../system/ConfigManager').ConfigManager();
-const renderer = require('../system/Renderer').Renderer(configManager);
+const translator = require('../system/Translator').Translator(configManager);
+const renderer = require('../system/Renderer').Renderer(configManager, translator);
 const nodemailer = require('nodemailer');
 
 /**
@@ -9,8 +10,8 @@ const nodemailer = require('nodemailer');
  */
 exports.index = async function(req, res) {
     renderer.renderBasic(req, res, 'contact', {
-        pageTitle: 'Formulaire de contact',
-        pageMeta: 'Formulaire de contact',
+        pageTitle: translator.translate('Contact form'),
+        pageMeta: translator.translate('Contact form'),
         antiSpamQuestion: configManager.getSetting('antispamQuestion'),
         antiSpamResponse: configManager.getSetting('antispamResponse'),
         noIndex: true
@@ -46,7 +47,7 @@ exports.submit = async function(req, res) {
         from: configManager.getSetting('userSenderEmail'),
         to: configManager.getSetting('userReceiverEmail'),
         subject: 'Message from ' + configManager.getSetting('blogName'),
-        text: req.body.email + ' (' + req.body.name + ') vous dit : ' + req.body.message
+        text: req.body.email + ' (' + req.body.name + ') says : ' + req.body.message
     };
 
     transporter.sendMail(mailOptions, function(error, info){

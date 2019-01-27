@@ -1,15 +1,13 @@
-<h2>Formulaire de contact</h2>
-
 <form id="contactForm" action="<%= templateData.baseUrl %>contact/">
-    <label for="name">Nom</label><br/>
+    <label for="name"><%= templateData.translator.translate('Name') %></label><br/>
     <input type="text" id="name" name="name"><br/>
-    <label for="email">Email</label><br/>
+    <label for="email"><%= templateData.translator.translate('Email') %></label><br/>
     <input type="email" id="email" name="email"><br/>
-    <label for="message">Message</label><br/>
+    <label for="message"><%= templateData.translator.translate('Message') %></label><br/>
     <textarea id="message" name="message"></textarea><br/>
     <label for="verif"><%- templateData.antiSpamQuestion %></label><br/>
     <input type="text" id="verif" name="verif"><br/>
-    <input id="submitButton" type="submit" value="Envoyer"/>
+    <input id="submitButton" type="submit" value="<%= templateData.translator.translate('Send') %>"/>
 </form>
 
 <script type="text/javascript">
@@ -19,20 +17,20 @@
 
         var status = true;
         var fields = {
-            'name': 'Nom',
-            'email': 'Email',
-            'message': 'Message'
+            'name': "<%= templateData.translator.translate('Name') %>",
+            'email': "<%= templateData.translator.translate('Email') %>",
+            'message': "<%= templateData.translator.translate('Message') %>"
         };
 
         $.each(fields, function (key, value) {
             if ($.trim($('#' + key).val()).length === 0) {
-                alert("Le champ '" + value + "' doit être renseigné.");
+                alert("<%= templateData.translator.translate('The field') %> '" + value + "' <%= templateData.translator.translate('must be filled') %>");
                 status = false;
             }
         });
 
         if ($('#verif').val() !== '<%- templateData.antiSpamResponse %>') {
-            alert('Antispam invalide.');
+            alert("<%= templateData.translator.translate('The antispam answer is not valid.') %>");
 
             status = false;
         }
@@ -43,15 +41,16 @@
                 data: $(this).serialize(),
                 url: $(this).attr('action'),
                 success: function () {
-                    alert('Merci. Votre message a été envoyé');
+                    alert("<%= templateData.translator.translate('Thank you. Your message has been sent.') %>");
                     location.reload();
                 },
                 error: function () {
-                    alert("Une erreur s'est produite");
-                    $('#submitButton').show();
+                    alert("<%= templateData.translator.translate('An error occurred.') %>");
                 }
             });
         }
+
+        $('#submitButton').show();
 
         return false;
     });

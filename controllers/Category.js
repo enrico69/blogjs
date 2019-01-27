@@ -1,6 +1,7 @@
 const configManager = require('../system/ConfigManager').ConfigManager();
-const renderer = require('../system/Renderer').Renderer(configManager);
 const repoManager = require('../system/RepoManager').RepoManager(configManager);
+const translator = require('../system/Translator').Translator(configManager);
+const renderer = require('../system/Renderer').Renderer(configManager, translator);
 
 /**
  * Render the list of categories, using Async/Await with promise.
@@ -13,8 +14,8 @@ exports.index = async function(req, res) {
     let categoriesRepository = repoManager.getRepo('Category');
     let categories = await categoriesRepository.getCategories();
     renderer.renderBasic(req, res, 'categories', {
-        pageTitle: 'Liste des catégories',
-        pageMeta: 'Index des catégories',
+        pageTitle: translator.translate('List of the categories'),
+        pageMeta: translator.translate('List of the categories'),
         categories: categories
     });
 };

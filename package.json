@@ -1,5 +1,5 @@
 {
-  "name": "books-nodejs",
+  "name": "ExpressBlogJS",
   "version": "1.0.0",
   "description": "A little app based on express.js to handle a blog",
   "main": "index.js",
@@ -21,6 +21,7 @@
     "ejs": "^2.6.1",
     "eventemitter": "^0.3.3",
     "express": "^4.16.4",
+    "i18n": "^0.8.3",
     "js-yaml": "^3.12.1",
     "moment": "^2.23.0",
     "morgan": "^1.9.1",

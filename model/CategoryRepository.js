@@ -4,9 +4,9 @@
  *
  *  All the methods are asynchronous and return promises.
  */
-let CategoryRepository = (function (dbConnection) {
+var CategoryRepository = (function (dbConnection) {
 
-    let connection = dbConnection;
+    var connection = dbConnection;
 
     /**
      * Return a given category by its slug.
@@ -15,7 +15,7 @@ let CategoryRepository = (function (dbConnection) {
      */
     this.getCategory = function(slug) {
         return new Promise(function(resolve, reject) {
-            let query = "SELECT * FROM categories WHERE URL = ? LIMIT 1";
+            var query = "SELECT * FROM categories WHERE URL = ? LIMIT 1";
 
             connection.query(query, [slug], function (err, rows, fields) {
                 if (rows) {
@@ -37,7 +37,7 @@ let CategoryRepository = (function (dbConnection) {
      */
     this.getCategories = function() {
         return new Promise(function(resolve, reject) {
-            let query = "SELECT * FROM categories ORDER BY NAME";
+            var query = "SELECT * FROM categories ORDER BY NAME";
 
             connection.query(query, [], function (err, rows, fields) {
                 if (err) {

@@ -59,6 +59,21 @@ class ConfigManager {
     getSetting(key) {
         return this.settings.general[key];
     }
+
+    /**
+     * Return the locale applied to the blog (use for translation for instance)
+     *
+     * @return {string|false}
+     */
+    getLanguage() {
+        let language = this.settings.general.locale;
+        if (typeof language !== 'string'
+            || language.trim().length === 0)  {
+            language = false;
+        }
+
+        return language
+    }
 }
 
 /**

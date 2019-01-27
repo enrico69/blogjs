@@ -12,8 +12,9 @@ const bodyParser = require('body-parser');
 
 // Custom libraries and config
 const configManager = require('./system/ConfigManager').ConfigManager();
+const translator = require('./system/Translator').Translator(configManager);
 const customRouter = require('./system/Routes');
-const renderer = require('./system/Renderer').Renderer(configManager);
+const renderer = require('./system/Renderer').Renderer(configManager, translator);
 
 // Routing
 app
