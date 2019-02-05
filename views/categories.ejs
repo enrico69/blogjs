@@ -2,11 +2,11 @@
 <ul>
     <% templateData.categories.forEach(function(category) { %>
     <li>
-        <a href="<%= templateData.baseUrl %><%= category.URL %>/"><%= category.NAME %></a>
+        <a href="<%- templateData.baseUrl %><%= category.URL %>/"><%= category.NAME %></a>
         <br/><i><%= category.DESCRIPTION %></i>
     </li>
     <% }); %>
 </ul>
 <% } else { %>
-    <%= templateData.translator.translate('There is no category currently.') %>
+    <%- templateData.translator.translate('There is no category currently.') %>
 <% } %>

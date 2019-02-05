@@ -1,13 +1,13 @@
 <form id="contactForm" action="<%= templateData.baseUrl %>contact/">
-    <label for="name"><%= templateData.translator.translate('Name') %></label><br/>
+    <label for="name"><%- templateData.translator.translate('Name') %></label><br/>
     <input type="text" id="name" name="name"><br/>
-    <label for="email"><%= templateData.translator.translate('Email') %></label><br/>
+    <label for="email"><%- templateData.translator.translate('Email') %></label><br/>
     <input type="email" id="email" name="email"><br/>
-    <label for="message"><%= templateData.translator.translate('Message') %></label><br/>
+    <label for="message"><%- templateData.translator.translate('Message') %></label><br/>
     <textarea id="message" name="message"></textarea><br/>
     <label for="verif"><%- templateData.antiSpamQuestion %></label><br/>
     <input type="text" id="verif" name="verif"><br/>
-    <input id="submitButton" type="submit" value="<%= templateData.translator.translate('Send') %>"/>
+    <input id="submitButton" type="submit" value="<%- templateData.translator.translate('Send') %>"/>
 </form>
 
 <script type="text/javascript">
@@ -15,22 +15,22 @@
         e.preventDefault();
         $('#submitButton').hide();
 
-        var status = true;
-        var fields = {
-            'name': "<%= templateData.translator.translate('Name') %>",
-            'email': "<%= templateData.translator.translate('Email') %>",
-            'message': "<%= templateData.translator.translate('Message') %>"
+        let status = true;
+        let fields = {
+            'name': "<%- templateData.translator.translate('Name') %>",
+            'email': "<%- templateData.translator.translate('Email') %>",
+            'message': "<%- templateData.translator.translate('Message') %>"
         };
 
         $.each(fields, function (key, value) {
             if ($.trim($('#' + key).val()).length === 0) {
-                alert("<%= templateData.translator.translate('The field') %> '" + value + "' <%= templateData.translator.translate('must be filled') %>");
+                alert("<%- templateData.translator.translate('The field') %> '" + value + "' <%- templateData.translator.translate('must be filled') %>");
                 status = false;
             }
         });
 
         if ($('#verif').val() !== '<%- templateData.antiSpamResponse %>') {
-            alert("<%= templateData.translator.translate('The antispam answer is not valid.') %>");
+            alert("<%- templateData.translator.translate('The antispam answer is not valid.') %>");
 
             status = false;
         }
@@ -41,11 +41,11 @@
                 data: $(this).serialize(),
                 url: $(this).attr('action'),
                 success: function () {
-                    alert("<%= templateData.translator.translate('Thank you. Your message has been sent.') %>");
+                    alert("<%- templateData.translator.translate('Thank you. Your message has been sent.') %>");
                     location.reload();
                 },
                 error: function () {
-                    alert("<%= templateData.translator.translate('An error occurred.') %>");
+                    alert("<%- templateData.translator.translate('An error occurred.') %>");
                 }
             });
         }

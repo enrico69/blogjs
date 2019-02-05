@@ -86,20 +86,20 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="<%= templateData.baseUrl %>"><%= templateData.translator.translate('Home') %></a>
+                        <a href="<%= templateData.baseUrl %>"><%- templateData.translator.translate('Home') %></a>
                     </li>
                     <li>
-                        <a href="<%= templateData.baseUrl %>categories/"><%= templateData.translator.translate('Categories') %></a>
+                        <a href="<%= templateData.baseUrl %>categories/"><%- templateData.translator.translate('Categories') %></a>
                     </li>
                     <li>
-                        <a href="<%= templateData.baseUrl %>contact/"><%= templateData.translator.translate('Contact') %></a>
+                        <a href="<%= templateData.baseUrl %>contact/"><%- templateData.translator.translate('Contact') %></a>
                     </li>
                     <li>
                         <form class="formRecherche"
                               action="<%= templateData.baseUrl %>search/"
                               method="POST"><input type="text" name="chaine"
-                                                   value="<%= templateData.translator.translate('Search') %>"/><input
-                                type="submit" value="<%= templateData.translator.translate('Go!') %>"/></form>
+                                                   value="<%- templateData.translator.translate('Search') %>"/><input
+                                type="submit" value="<%- templateData.translator.translate('Go!') %>"/></form>
                     </li>
                 </ul>
             </div>
