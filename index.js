@@ -11,10 +11,7 @@ const ejs = require('ejs');
 const bodyParser = require('body-parser');
 
 // Custom libraries and config
-const configManager = require('./system/ConfigManager').ConfigManager();
-const translator = require('./system/Translator').Translator(configManager);
 const customRouter = require('./system/Routes');
-const renderer = require('./system/Renderer').Renderer(configManager, translator);
 
 // Routing
 app
@@ -27,24 +24,13 @@ app
     .use(favicon(__dirname + '/public/img/favicon.ico'))
 
     // /!\ : REMEMBER that the order of the routes is important!
-    // Home
-    .get('/', customRouter)
-    // View an article
-    .get('/:category/:article/', customRouter)
-    // See categories
-    .get('/categories/', customRouter)
-    // Contact page: display
-    .get('/contact/', customRouter)
-    // View a category
-    .get('/:category/', customRouter)
-    // Contact page: submit
-    .post('/contact/', customRouter)
-    // Search function
-    .post('/search/', customRouter)
-
-    // Everything else: 404
-    .use(function (req, res, next) {
-        renderer.render404(req, res);
-    })
+    .get('*', customRouter)
+    .post('*', customRouter)
+    .head('*', customRouter)
+    .put('*', customRouter)
+    .delete('*', customRouter)
+    .connect('*', customRouter)
+    .options('*', customRouter)
+    .trace('*', customRouter)
 ;
 app.listen(8080);

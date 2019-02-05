@@ -8,6 +8,7 @@ const articleController = require('../controllers/Article');
 const categoryController = require('../controllers/Category');
 const contactController = require('../controllers/Contact');
 const searchController = require('../controllers/Search');
+const notFoundController = require('../controllers/404');
 
 // /!\ : REMEMBER that the order of the routes is important!
 
@@ -29,5 +30,8 @@ router.get('/:category/', categoryController.viewCategory);
 
 // Search function
 router.post('/search/', searchController.index);
+
+// Everything else: 404
+router.post('*', notFoundController.index);
 
 module.exports = router;
