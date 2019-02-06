@@ -2,7 +2,7 @@
 <ul>
 <% templateData.articles.forEach(function(article) { %>
     <li>
-            <a href="<%= templateData.baseUrl %><%= article.CATEGURL %>/<%= article.URL %>/"><%= article.TITLE %></a>
+            <a href="<%= templateData.baseUrl %><%= article.categ_url %>/<%= article.url %>/"><%= article.title %></a>
             <br/><i><%= article.DESCRIPTION %></i>
     </li>
 <% }); %>

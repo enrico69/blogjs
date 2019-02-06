@@ -1,18 +1,18 @@
 <%- templateData.translator.translate('Posted on') %>
-<%= templateData.moment(templateData.article.DATE).locale(templateData.translator.getLocale()).format('Do MMMM YYYY'); %>
-<%- templateData.translator.translate('in the category') %> '<a href="<%= templateData.baseUrl %><%= templateData.article.CATEGURL %>/"><%= templateData.article.CATEGNAME %></a>'
+<%= templateData.moment(templateData.article.date).locale(templateData.translator.getLocale()).format('Do MMMM YYYY'); %>
+<%- templateData.translator.translate('in the category') %> '<a href="<%= templateData.baseUrl %><%= templateData.article.categ_url %>/"><%= templateData.article.categ_name %></a>'
 
-<%if (templateData.article.Obsolete) { %>
+<%if (templateData.article.obsolete) { %>
 <p><strong style="color:red;"><%- templateData.translator.translate('The content of this post may be obsolete!') %></strong></p>
 <% } %>
-<%- templateData.article.CONTENT %>
+<%- templateData.article.content %>
 <br/>
 <div id="recentTopArticles">
     <%if (templateData.articlesHome) { %>
         <h3><%- templateData.translator.translate('Did you enjoy reading this article? Check these ones too!') %></h3>
         <ul>
             <% templateData.articlesHome.forEach(function(topArticle) { %>
-                <li><a href="<%= templateData.baseUrl %><%= topArticle.CATEGURL %>/<%= topArticle.URL %>/"><%= topArticle.TITLE %></a></li>
+                <li><a href="<%= templateData.baseUrl %><%= topArticle.categ_url %>/<%= topArticle.url %>/"><%= topArticle.title %></a></li>
             <% }); %>
         </ul>
     <% } %>

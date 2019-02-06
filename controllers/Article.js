@@ -16,8 +16,8 @@ exports.viewArticle = function (req, res) {
         let articlePromise = getArticleBySlug(req.params.article, req.params.category);
         articlePromise.then(function(article) {
             renderer.renderBasic(req, res, 'article', {
-                pageTitle: article.TITLE,
-                pageMeta: article.DESCRIPTION,
+                pageTitle: article.title,
+                pageMeta: article.description,
                 article: article,
                 articlesHome: articlesHome,
                 disqusId: configManager.getSetting('disqusId')
@@ -80,7 +80,7 @@ getArticleBySlug = function(slug, categorySlug) {
             reject(error);
         });
         articleRepository.on('success', function (article) {
-            if (article.CATEGURL !== categorySlug) {
+            if (article.categ_url !== categorySlug) {
                 reject('404');
             } else {
                 resolve(article);

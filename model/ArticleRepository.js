@@ -22,10 +22,10 @@ class ArticleRepository extends EventEmitter {
      * Extract the articles for the homepage
      */
     getArticlesHome() {
-        let sqlQuery = 'SELECT articles.TITLE, articles.DESCRIPTION, articles.DATE, ' +
-            'articles.CATEG, articles.URL, categories.URL AS CATEGURL FROM ' +
-            'articles, categories WHERE articles.CATEG = categories.ID AND HOME = 1 ' +
-            'AND Online = 1 ORDER BY DATE DESC LIMIT 10';
+        let sqlQuery = 'SELECT article.title, article.description, article.date, ' +
+            'article.categ, article.url, category.url AS categ_url FROM ' +
+            'article, category WHERE article.categ = category.id AND top_article = 1 ' +
+            'AND online = 1 ORDER BY date DESC LIMIT 10';
 
         let that = this;
 
@@ -38,9 +38,9 @@ class ArticleRepository extends EventEmitter {
      * Extract an article for a given slug
      */
     getArticleBySlug(articleSlug) {
-        let sqlQuery = 'SELECT articles.*, categories.URL AS CATEGURL, categories.NAME as CATEGNAME FROM ' +
-            'articles, categories WHERE articles.URL = ? AND articles.CATEG = categories.ID' +
-            ' AND Online = 1 LIMIT 1';
+        let sqlQuery = 'SELECT article.*, category.url AS categ_url, category.name as categ_name FROM ' +
+            'article, category WHERE article.url = ? AND article.categ = category.id' +
+            ' AND online = 1 LIMIT 1';
 
         let that = this;
 
@@ -75,7 +75,7 @@ class ArticleRepository extends EventEmitter {
         let that = this;
 
         return new Promise(function(resolve, reject) {
-            let query = "SELECT * FROM articles WHERE CATEG = ? AND Online = 1";
+            let query = "SELECT * FROM article WHERE categ = ? AND online = 1";
 
             that.connection.query(query, [categId], function (err, rows, fields) {
                 if (rows) {
@@ -101,11 +101,11 @@ class ArticleRepository extends EventEmitter {
         queryString = '%' + queryString + '%';
 
         return new Promise(function(resolve, reject) {
-            let sqlQuery = 'SELECT articles.TITLE, articles.DESCRIPTION, articles.DATE, ' +
-                'articles.CATEG, articles.URL, categories.URL AS CATEGURL FROM ' +
-                "articles, categories WHERE (articles.TITLE LIKE ? OR articles.CONTENT LIKE ?) " +
-                'AND articles.CATEG = categories.ID ' +
-                'AND articles.Online = 1 ORDER BY articles.DATE DESC';
+            let sqlQuery = 'SELECT article.title, article.description, article.date, ' +
+                'article.categ, article.url, category.url AS categ_url FROM ' +
+                "article, category WHERE (article.title LIKE ? OR article.content LIKE ?) " +
+                'AND article.categ = category.id ' +
+                'AND article.online = 1 ORDER BY article.date DESC';
 
             that.connection.query(sqlQuery, [queryString, queryString], function (err, rows, fields) {
                 if (rows) {

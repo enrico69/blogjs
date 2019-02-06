@@ -30,10 +30,10 @@ exports.viewCategory = async function(req, res) {
     let articleRepository = repoManager.getRepo('Article');
     let category = await categoriesRepository.getCategory(req.params.category);
     if (category) {
-        let articles = await articleRepository.getArticleByCateg(category.ID);
+        let articles = await articleRepository.getArticleByCateg(category.id);
         renderer.renderBasic(req, res, 'category', {
-            pageTitle: category.NAME,
-            pageMeta: category.DESCRIPTION,
+            pageTitle: category.name,
+            pageMeta: category.description,
             category: category,
             articles: articles
         });

@@ -2,8 +2,8 @@
 <ul>
     <% templateData.categories.forEach(function(category) { %>
     <li>
-        <a href="<%- templateData.baseUrl %><%= category.URL %>/"><%= category.NAME %></a>
-        <br/><i><%= category.DESCRIPTION %></i>
+        <a href="<%- templateData.baseUrl %><%= category.url %>/"><%= category.name %></a>
+        <br/><i><%= category.description %></i>
     </li>
     <% }); %>
 </ul>

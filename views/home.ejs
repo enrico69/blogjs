@@ -3,15 +3,15 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-preview">
-                    <a href="<%= templateData.baseUrl %><%= article.CATEGURL %>/<%= article.URL %>/">
+                    <a href="<%= templateData.baseUrl %><%= article.categ_url %>/<%= article.url %>/">
                     <h2 class="post-title">
-                        <%= article.TITLE %>
+                        <%= article.title %>
                     </h2>
                     <h3 class="post-subtitle">
-                        <%= article.DESCRIPTION %>
+                        <%= article.description %>
                     </h3>
                     </a>
-                    <p class="post-meta"><%= templateData.translator.translate('Posted on') %> <%= templateData.moment(article.DATE).locale(templateData.translator.getLocale()).format('Do MMMM YYYY'); %></p>
+                    <p class="post-meta"><%= templateData.translator.translate('Posted on') %> <%= templateData.moment(article.date).locale(templateData.translator.getLocale()).format('Do MMMM YYYY'); %></p>
                 </div>
                 <hr>
             </div>

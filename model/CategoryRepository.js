@@ -15,7 +15,7 @@ var CategoryRepository = (function (dbConnection) {
      */
     this.getCategory = function(slug) {
         return new Promise(function(resolve, reject) {
-            var query = "SELECT * FROM categories WHERE URL = ? LIMIT 1";
+            var query = "SELECT * FROM category WHERE url = ? LIMIT 1";
 
             connection.query(query, [slug], function (err, rows, fields) {
                 if (rows) {
@@ -37,7 +37,7 @@ var CategoryRepository = (function (dbConnection) {
      */
     this.getCategories = function() {
         return new Promise(function(resolve, reject) {
-            var query = "SELECT * FROM categories ORDER BY NAME";
+            var query = "SELECT * FROM category ORDER BY name";
 
             connection.query(query, [], function (err, rows, fields) {
                 if (err) {
